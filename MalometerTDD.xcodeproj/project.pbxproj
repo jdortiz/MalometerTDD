@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF17D782194504F400A6A88B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D781194504F400A6A88B /* Foundation.framework */; };
+		CF17D784194504F500A6A88B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D783194504F500A6A88B /* CoreGraphics.framework */; };
+		CF17D786194504F500A6A88B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D785194504F500A6A88B /* UIKit.framework */; };
+		CF17D788194504F500A6A88B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D787194504F500A6A88B /* CoreData.framework */; };
+		CF17D78E194504F500A6A88B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF17D78C194504F500A6A88B /* InfoPlist.strings */; };
+		CF17D790194504F500A6A88B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF17D78F194504F500A6A88B /* main.m */; };
+		CF17D794194504F500A6A88B /* JOFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF17D793194504F500A6A88B /* JOFAppDelegate.m */; };
+		CF17D797194504F500A6A88B /* MalometerTDD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */; };
+		CF17D799194504F500A6A88B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF17D798194504F500A6A88B /* Images.xcassets */; };
+		CF17D7A0194504F500A6A88B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D79F194504F500A6A88B /* XCTest.framework */; };
+		CF17D7A1194504F500A6A88B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D781194504F400A6A88B /* Foundation.framework */; };
+		CF17D7A2194504F500A6A88B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D785194504F500A6A88B /* UIKit.framework */; };
+		CF17D7A3194504F500A6A88B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D787194504F500A6A88B /* CoreData.framework */; };
+		CF17D7AB194504F500A6A88B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF17D7A9194504F500A6A88B /* InfoPlist.strings */; };
+		CF17D7AD194504F500A6A88B /* MalometerTDDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF17D7AC194504F500A6A88B /* MalometerTDDTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF17D7A4194504F500A6A88B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF17D776194504F400A6A88B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF17D77D194504F400A6A88B;
+			remoteInfo = MalometerTDD;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF17D77E194504F400A6A88B /* MalometerTDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MalometerTDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF17D781194504F400A6A88B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF17D783194504F500A6A88B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CF17D785194504F500A6A88B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CF17D787194504F500A6A88B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CF17D78B194504F500A6A88B /* MalometerTDD-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MalometerTDD-Info.plist"; sourceTree = "<group>"; };
+		CF17D78D194504F500A6A88B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF17D78F194504F500A6A88B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF17D791194504F500A6A88B /* MalometerTDD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MalometerTDD-Prefix.pch"; sourceTree = "<group>"; };
+		CF17D792194504F500A6A88B /* JOFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JOFAppDelegate.h; sourceTree = "<group>"; };
+		CF17D793194504F500A6A88B /* JOFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JOFAppDelegate.m; sourceTree = "<group>"; };
+		CF17D796194504F500A6A88B /* MalometerTDD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MalometerTDD.xcdatamodel; sourceTree = "<group>"; };
+		CF17D798194504F500A6A88B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF17D79E194504F500A6A88B /* MalometerTDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MalometerTDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF17D79F194504F500A6A88B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CF17D7A8194504F500A6A88B /* MalometerTDDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MalometerTDDTests-Info.plist"; sourceTree = "<group>"; };
+		CF17D7AA194504F500A6A88B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF17D7AC194504F500A6A88B /* MalometerTDDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MalometerTDDTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF17D77B194504F400A6A88B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D784194504F500A6A88B /* CoreGraphics.framework in Frameworks */,
+				CF17D788194504F500A6A88B /* CoreData.framework in Frameworks */,
+				CF17D786194504F500A6A88B /* UIKit.framework in Frameworks */,
+				CF17D782194504F400A6A88B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF17D79B194504F500A6A88B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D7A0194504F500A6A88B /* XCTest.framework in Frameworks */,
+				CF17D7A3194504F500A6A88B /* CoreData.framework in Frameworks */,
+				CF17D7A2194504F500A6A88B /* UIKit.framework in Frameworks */,
+				CF17D7A1194504F500A6A88B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF17D775194504F400A6A88B = {
+			isa = PBXGroup;
+			children = (
+				CF17D789194504F500A6A88B /* MalometerTDD */,
+				CF17D7A6194504F500A6A88B /* MalometerTDDTests */,
+				CF17D780194504F400A6A88B /* Frameworks */,
+				CF17D77F194504F400A6A88B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF17D77F194504F400A6A88B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D77E194504F400A6A88B /* MalometerTDD.app */,
+				CF17D79E194504F500A6A88B /* MalometerTDDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF17D780194504F400A6A88B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D781194504F400A6A88B /* Foundation.framework */,
+				CF17D783194504F500A6A88B /* CoreGraphics.framework */,
+				CF17D785194504F500A6A88B /* UIKit.framework */,
+				CF17D787194504F500A6A88B /* CoreData.framework */,
+				CF17D79F194504F500A6A88B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF17D789194504F500A6A88B /* MalometerTDD */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D792194504F500A6A88B /* JOFAppDelegate.h */,
+				CF17D793194504F500A6A88B /* JOFAppDelegate.m */,
+				CF17D798194504F500A6A88B /* Images.xcassets */,
+				CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */,
+				CF17D78A194504F500A6A88B /* Supporting Files */,
+			);
+			path = MalometerTDD;
+			sourceTree = "<group>";
+		};
+		CF17D78A194504F500A6A88B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D78B194504F500A6A88B /* MalometerTDD-Info.plist */,
+				CF17D78C194504F500A6A88B /* InfoPlist.strings */,
+				CF17D78F194504F500A6A88B /* main.m */,
+				CF17D791194504F500A6A88B /* MalometerTDD-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF17D7A6194504F500A6A88B /* MalometerTDDTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D7AC194504F500A6A88B /* MalometerTDDTests.m */,
+				CF17D7A7194504F500A6A88B /* Supporting Files */,
+			);
+			path = MalometerTDDTests;
+			sourceTree = "<group>";
+		};
+		CF17D7A7194504F500A6A88B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D7A8194504F500A6A88B /* MalometerTDDTests-Info.plist */,
+				CF17D7A9194504F500A6A88B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF17D77D194504F400A6A88B /* MalometerTDD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF17D7B0194504F500A6A88B /* Build configuration list for PBXNativeTarget "MalometerTDD" */;
+			buildPhases = (
+				CF17D77A194504F400A6A88B /* Sources */,
+				CF17D77B194504F400A6A88B /* Frameworks */,
+				CF17D77C194504F400A6A88B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MalometerTDD;
+			productName = MalometerTDD;
+			productReference = CF17D77E194504F400A6A88B /* MalometerTDD.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF17D79D194504F500A6A88B /* MalometerTDDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF17D7B3194504F500A6A88B /* Build configuration list for PBXNativeTarget "MalometerTDDTests" */;
+			buildPhases = (
+				CF17D79A194504F500A6A88B /* Sources */,
+				CF17D79B194504F500A6A88B /* Frameworks */,
+				CF17D79C194504F500A6A88B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF17D7A5194504F500A6A88B /* PBXTargetDependency */,
+			);
+			name = MalometerTDDTests;
+			productName = MalometerTDDTests;
+			productReference = CF17D79E194504F500A6A88B /* MalometerTDDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF17D776194504F400A6A88B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JOF;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = PoWWaU;
+				TargetAttributes = {
+					CF17D79D194504F500A6A88B = {
+						TestTargetID = CF17D77D194504F400A6A88B;
+					};
+				};
+			};
+			buildConfigurationList = CF17D779194504F400A6A88B /* Build configuration list for PBXProject "MalometerTDD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF17D775194504F400A6A88B;
+			productRefGroup = CF17D77F194504F400A6A88B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF17D77D194504F400A6A88B /* MalometerTDD */,
+				CF17D79D194504F500A6A88B /* MalometerTDDTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF17D77C194504F400A6A88B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D78E194504F500A6A88B /* InfoPlist.strings in Resources */,
+				CF17D799194504F500A6A88B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF17D79C194504F500A6A88B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D7AB194504F500A6A88B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF17D77A194504F400A6A88B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D797194504F500A6A88B /* MalometerTDD.xcdatamodeld in Sources */,
+				CF17D794194504F500A6A88B /* JOFAppDelegate.m in Sources */,
+				CF17D790194504F500A6A88B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF17D79A194504F500A6A88B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF17D7AD194504F500A6A88B /* MalometerTDDTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF17D7A5194504F500A6A88B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF17D77D194504F400A6A88B /* MalometerTDD */;
+			targetProxy = CF17D7A4194504F500A6A88B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CF17D78C194504F500A6A88B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF17D78D194504F500A6A88B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF17D7A9194504F500A6A88B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF17D7AA194504F500A6A88B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF17D7AE194504F500A6A88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CF17D7AF194504F500A6A88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF17D7B1194504F500A6A88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MalometerTDD/MalometerTDD-Prefix.pch";
+				INFOPLIST_FILE = "MalometerTDD/MalometerTDD-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF17D7B2194504F500A6A88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MalometerTDD/MalometerTDD-Prefix.pch";
+				INFOPLIST_FILE = "MalometerTDD/MalometerTDD-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CF17D7B4194504F500A6A88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MalometerTDD.app/MalometerTDD";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MalometerTDD/MalometerTDD-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MalometerTDDTests/MalometerTDDTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CF17D7B5194504F500A6A88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MalometerTDD.app/MalometerTDD";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MalometerTDD/MalometerTDD-Prefix.pch";
+				INFOPLIST_FILE = "MalometerTDDTests/MalometerTDDTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF17D779194504F400A6A88B /* Build configuration list for PBXProject "MalometerTDD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF17D7AE194504F500A6A88B /* Debug */,
+				CF17D7AF194504F500A6A88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF17D7B0194504F500A6A88B /* Build configuration list for PBXNativeTarget "MalometerTDD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF17D7B1194504F500A6A88B /* Debug */,
+				CF17D7B2194504F500A6A88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CF17D7B3194504F500A6A88B /* Build configuration list for PBXNativeTarget "MalometerTDDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF17D7B4194504F500A6A88B /* Debug */,
+				CF17D7B5194504F500A6A88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CF17D796194504F500A6A88B /* MalometerTDD.xcdatamodel */,
+			);
+			currentVersion = CF17D796194504F500A6A88B /* MalometerTDD.xcdatamodel */;
+			path = MalometerTDD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CF17D776194504F400A6A88B /* Project object */;
+}
