@@ -21,7 +21,10 @@ NSString *const agentEntityName = @"Agent";
 
 
 - (NSNumber *) assessment {
-    return @(3);
+    NSUInteger destrPowerValue = [self.destructionPower unsignedIntegerValue];
+    NSUInteger motivationValue = [self.motivation unsignedIntegerValue];
+    NSUInteger assessmentValue = (destrPowerValue + motivationValue) / 2;
+    return @(assessmentValue);
 }
 
 @end
