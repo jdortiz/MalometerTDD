@@ -8,7 +8,7 @@
 
 
 #import <XCTest/XCTest.h>
-//#import <OCMock/OCMock.h>
+#import <OCMock.h>
 #import "Agent+Model.h"
 
 
@@ -114,6 +114,19 @@
     sut.motivation = @(2);
     
     XCTAssertEqual([sut.assessment unsignedIntegerValue], (NSUInteger)1, @"Assessment should be calculated from destruction power and motivation");
+}
+
+
+- (void) testAssessmentAccessIsNotified {
+    sut.destructionPower = @(2);
+    sut.motivation = @(4);
+    id sutMock = [OCMockObject partialMockForObject:sut];
+    [[sutMock expect] willAccessValueForKey:agentPropertyAssessment];
+    [[sutMock expect] didAccessValueForKey:agentPropertyAssessment];
+
+    [sutMock assessment];
+    
+    XCTAssertNoThrow([sutMock verify], @"Assessment access must be notified.");
 }
 
 @end

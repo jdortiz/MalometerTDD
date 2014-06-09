@@ -9,6 +9,10 @@
 #import "Agent+Model.h"
 
 NSString *const agentEntityName = @"Agent";
+NSString *const agentPropertyDestructionPower = @"destructionPower";
+NSString *const agentPropertyMotivation = @"motivation";
+NSString *const agentPropertyAssessment = @"assessment";
+
 
 @implementation Agent (Model)
 
@@ -21,9 +25,13 @@ NSString *const agentEntityName = @"Agent";
 
 
 - (NSNumber *) assessment {
-    NSUInteger destrPowerValue = [self.destructionPower unsignedIntegerValue];
-    NSUInteger motivationValue = [self.motivation unsignedIntegerValue];
+    [self willAccessValueForKey:agentPropertyAssessment];
+    NSUInteger destrPowerValue = [[self primitiveValueForKey:agentPropertyDestructionPower]
+                                  unsignedIntegerValue];
+    NSUInteger motivationValue = [[self primitiveValueForKey:agentPropertyMotivation]
+                                  unsignedIntegerValue];
     NSUInteger assessmentValue = (destrPowerValue + motivationValue) / 2;
+    [self didAccessValueForKey:agentPropertyAssessment];
     return @(assessmentValue);
 }
 

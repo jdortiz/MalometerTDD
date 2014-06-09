@@ -9,6 +9,9 @@
 #import "Agent.h"
 
 extern NSString *const agentEntityName;
+extern NSString *const agentPropertyDestructionPower;
+extern NSString *const agentPropertyMotivation;
+extern NSString *const agentPropertyAssessment;
 
 
 @interface Agent (Model)
