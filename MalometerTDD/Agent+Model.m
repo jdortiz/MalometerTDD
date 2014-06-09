@@ -12,8 +12,11 @@ NSString *const agentEntityName = @"Agent";
 
 @implementation Agent (Model)
 
+#pragma mark - Convenience constructor
+
 + (instancetype) agentInMOC:(NSManagedObjectContext *)moc {
-    return nil;
+    return [NSEntityDescription insertNewObjectForEntityForName:agentEntityName
+                                         inManagedObjectContext:moc];
 }
 
 @end

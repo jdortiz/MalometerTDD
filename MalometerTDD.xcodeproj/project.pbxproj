@@ -22,6 +22,7 @@
 		CF17D7A2194504F500A6A88B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D785194504F500A6A88B /* UIKit.framework */; };
 		CF17D7A3194504F500A6A88B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D787194504F500A6A88B /* CoreData.framework */; };
 		CF17D7AB194504F500A6A88B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF17D7A9194504F500A6A88B /* InfoPlist.strings */; };
+		CF34C47A19458C9B00352429 /* MalometerTDD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */; };
 		CF3930E4194511B8000542E5 /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3930E3194511B8000542E5 /* Agent.m */; };
 		CF3930E719451321000542E5 /* Agent+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3930E619451321000542E5 /* Agent+Model.m */; };
 		CF3930E919451426000542E5 /* AgentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3930E819451426000542E5 /* AgentTests.m */; };
@@ -313,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF3930E919451426000542E5 /* AgentTests.m in Sources */,
+				CF34C47A19458C9B00352429 /* MalometerTDD.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
