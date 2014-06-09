@@ -19,4 +19,9 @@ NSString *const agentEntityName = @"Agent";
                                          inManagedObjectContext:moc];
 }
 
+
+- (NSNumber *) assessment {
+    return @(3);
+}
+
 @end
