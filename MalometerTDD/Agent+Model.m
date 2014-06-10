@@ -44,4 +44,13 @@ NSString *const agentPropertyAssessment = @"assessment";
     [self didChangeValueForKey:agentPropertyMotivation];
 }
 
+
+- (void) setDestructionPower:(NSNumber *)destructionPower {
+    [self willChangeValueForKey:agentPropertyDestructionPower];
+    [self willChangeValueForKey:agentPropertyAssessment];
+    [self setPrimitiveValue:destructionPower forKey:agentPropertyDestructionPower];
+    [self didChangeValueForKey:agentPropertyAssessment];
+    [self didChangeValueForKey:agentPropertyDestructionPower];
+}
+
 @end

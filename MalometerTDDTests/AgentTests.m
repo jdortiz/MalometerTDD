@@ -170,6 +170,36 @@
 }
 
 
+- (void) testDestructionPowerIsPreservedProperly {
+    sut.destructionPower = @(4);
+    
+    XCTAssertEqual([sut.destructionPower unsignedIntegerValue], (NSUInteger)4,
+                   @"Destruction power must be preserved properly.");
+}
+
+
+- (void) testDestructionPowerNotifiesChangesForKVO {
+    [sut addObserver:self forKeyPath:agentPropertyDestructionPower
+             options:0 context:NULL];
+    sut.destructionPower = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to destructionPower should be notified.");
+    [sut removeObserver:self forKeyPath:agentPropertyDestructionPower];
+}
+
+
+- (void) testDestructionPowerChangesAssessment {
+    sut.destructionPower = @(1);
+    sut.motivation = @(1);
+    
+    [sut addObserver:self forKeyPath:agentPropertyAssessment
+             options:0 context:NULL];
+    sut.destructionPower = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to destructionPower should change assessment.");
+    [sut removeObserver:self forKeyPath:agentPropertyAssessment];
+}
+
 
 #pragma mark - Observation
 
