@@ -35,4 +35,13 @@ NSString *const agentPropertyAssessment = @"assessment";
     return @(assessmentValue);
 }
 
+
+- (void) setMotivation:(NSNumber *)motivation {
+    [self willChangeValueForKey:agentPropertyMotivation];
+    [self willChangeValueForKey:agentPropertyAssessment];
+    [self setPrimitiveValue:motivation forKey:agentPropertyMotivation];
+    [self didChangeValueForKey:agentPropertyAssessment];
+    [self didChangeValueForKey:agentPropertyMotivation];
+}
+
 @end

@@ -20,6 +20,9 @@
     NSManagedObjectContext *context;
     // Object to test.
     Agent *sut;
+    
+    // Change
+    BOOL changeFlag;
 }
 
 @end
@@ -35,6 +38,7 @@
     [self createCoreDataStack];
     [self createFixture];
     [self createSut];
+    [self resetChangeFlag];
 }
 
 
@@ -59,6 +63,11 @@
 
 - (void) createSut {
     sut = [Agent agentInMOC:context];
+}
+
+
+- (void) resetChangeFlag {
+    changeFlag = NO;
 }
 
 
@@ -127,6 +136,45 @@
     [sutMock assessment];
     
     XCTAssertNoThrow([sutMock verify], @"Assessment access must be notified.");
+}
+
+
+- (void) testMotivationIsPreservedProperly {
+    sut.motivation = @(4);
+    
+    XCTAssertEqual([sut.motivation unsignedIntegerValue], (NSUInteger)4,
+                   @"Motivation must be preserved properly.");
+}
+
+
+- (void) testMotivationNotifiesChangesForKVO {
+    [sut addObserver:self forKeyPath:agentPropertyMotivation
+             options:0 context:NULL];
+    sut.motivation = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to motivation should be notified.");
+    [sut removeObserver:self forKeyPath:agentPropertyMotivation];
+}
+
+
+- (void) testMotivationChangesAssessment {
+    sut.destructionPower = @(1);
+    sut.motivation = @(1);
+
+    [sut addObserver:self forKeyPath:agentPropertyAssessment
+             options:0 context:NULL];
+    sut.motivation = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to motivation should change assessment.");
+    [sut removeObserver:self forKeyPath:agentPropertyAssessment];
+}
+
+
+
+#pragma mark - Observation
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    changeFlag = YES;
 }
 
 @end
