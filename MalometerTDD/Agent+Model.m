@@ -53,4 +53,11 @@ NSString *const agentPropertyAssessment = @"assessment";
     [self didChangeValueForKey:agentPropertyDestructionPower];
 }
 
+
+#pragma mark - Picture logic
+
+- (NSString *) generatePictureUUID {
+    return @"";
+}
+
 @end

@@ -17,5 +17,6 @@ extern NSString *const agentPropertyAssessment;
 @interface Agent (Model)
 
 + (instancetype) agentInMOC:(NSManagedObjectContext *)moc;
+- (NSString *) generatePictureUUID;
 
 @end

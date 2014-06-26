@@ -201,6 +201,12 @@
 }
 
 
+#pragma mark - Picture logic
+
+- (void) testGeneratedPictureUUIDIsNotNil {
+    XCTAssertNotNil([sut generatePictureUUID], @"Generated picture UUID must not be nil.");
+}
+
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
