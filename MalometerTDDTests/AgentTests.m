@@ -8,7 +8,7 @@
 
 
 #import <XCTest/XCTest.h>
-//#import <OCMock/OCMock.h>
+#import <OCMock.h>
 #import "Agent+Model.h"
 
 
@@ -20,6 +20,9 @@
     NSManagedObjectContext *context;
     // Object to test.
     Agent *sut;
+    
+    // Change
+    BOOL changeFlag;
 }
 
 @end
@@ -35,6 +38,7 @@
     [self createCoreDataStack];
     [self createFixture];
     [self createSut];
+    [self resetChangeFlag];
 }
 
 
@@ -59,6 +63,11 @@
 
 - (void) createSut {
     sut = [Agent agentInMOC:context];
+}
+
+
+- (void) resetChangeFlag {
+    changeFlag = NO;
 }
 
 
@@ -98,6 +107,104 @@
 
     // Check
     XCTAssertNotNil(sut, @"The object to test must be created in setUp.");
+}
+
+
+- (void) testAssessmentValueIsCalculatedFromDestPowerAndMotivation {
+    sut.destructionPower = @(3);
+    sut.motivation = @(4);
+
+    XCTAssertEqual([sut.assessment unsignedIntegerValue], (NSUInteger)3, @"Assessment should be calculated from destruction power and motivation");
+}
+
+
+- (void) testAssessmentValueIsCalculatedFromOtherDestPowerAndMotivation {
+    sut.destructionPower = @(1);
+    sut.motivation = @(2);
+    
+    XCTAssertEqual([sut.assessment unsignedIntegerValue], (NSUInteger)1, @"Assessment should be calculated from destruction power and motivation");
+}
+
+
+- (void) testAssessmentAccessIsNotified {
+    sut.destructionPower = @(2);
+    sut.motivation = @(4);
+    id sutMock = [OCMockObject partialMockForObject:sut];
+    [[sutMock expect] willAccessValueForKey:agentPropertyAssessment];
+    [[sutMock expect] didAccessValueForKey:agentPropertyAssessment];
+
+    [sutMock assessment];
+    
+    XCTAssertNoThrow([sutMock verify], @"Assessment access must be notified.");
+}
+
+
+- (void) testMotivationIsPreservedProperly {
+    sut.motivation = @(4);
+    
+    XCTAssertEqual([sut.motivation unsignedIntegerValue], (NSUInteger)4,
+                   @"Motivation must be preserved properly.");
+}
+
+
+- (void) testMotivationNotifiesChangesForKVO {
+    [sut addObserver:self forKeyPath:agentPropertyMotivation
+             options:0 context:NULL];
+    sut.motivation = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to motivation should be notified.");
+    [sut removeObserver:self forKeyPath:agentPropertyMotivation];
+}
+
+
+- (void) testMotivationChangesAssessment {
+    sut.destructionPower = @(1);
+    sut.motivation = @(1);
+
+    [sut addObserver:self forKeyPath:agentPropertyAssessment
+             options:0 context:NULL];
+    sut.motivation = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to motivation should change assessment.");
+    [sut removeObserver:self forKeyPath:agentPropertyAssessment];
+}
+
+
+- (void) testDestructionPowerIsPreservedProperly {
+    sut.destructionPower = @(4);
+    
+    XCTAssertEqual([sut.destructionPower unsignedIntegerValue], (NSUInteger)4,
+                   @"Destruction power must be preserved properly.");
+}
+
+
+- (void) testDestructionPowerNotifiesChangesForKVO {
+    [sut addObserver:self forKeyPath:agentPropertyDestructionPower
+             options:0 context:NULL];
+    sut.destructionPower = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to destructionPower should be notified.");
+    [sut removeObserver:self forKeyPath:agentPropertyDestructionPower];
+}
+
+
+- (void) testDestructionPowerChangesAssessment {
+    sut.destructionPower = @(1);
+    sut.motivation = @(1);
+    
+    [sut addObserver:self forKeyPath:agentPropertyAssessment
+             options:0 context:NULL];
+    sut.destructionPower = @(3);
+    
+    XCTAssertTrue(changeFlag, @"Changes to destructionPower should change assessment.");
+    [sut removeObserver:self forKeyPath:agentPropertyAssessment];
+}
+
+
+#pragma mark - Observation
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    changeFlag = YES;
 }
 
 @end

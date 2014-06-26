@@ -2,7 +2,7 @@
 //  Agent.m
 //  MalometerTDD
 //
-//  Created by Jorge D. Ortiz Fuentes on 08/06/14.
+//  Created by Jorge D. Ortiz Fuentes on 09/06/14.
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
@@ -14,5 +14,6 @@
 @dynamic destructionPower;
 @dynamic motivation;
 @dynamic name;
+@dynamic assessment;
 
 @end
