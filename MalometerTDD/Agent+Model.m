@@ -57,7 +57,10 @@ NSString *const agentPropertyAssessment = @"assessment";
 #pragma mark - Picture logic
 
 - (NSString *) generatePictureUUID {
-    return @"";
+    CFUUIDRef   fileUUID = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef fileUUIDString = CFUUIDCreateString(kCFAllocatorDefault, fileUUID);
+    CFRelease(fileUUID);
+    return (__bridge_transfer NSString *)fileUUIDString;
 }
 
 @end
