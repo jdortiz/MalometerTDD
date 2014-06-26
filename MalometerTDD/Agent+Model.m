@@ -9,6 +9,7 @@
 #import "Agent+Model.h"
 
 NSString *const agentEntityName = @"Agent";
+NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
 NSString *const agentPropertyMotivation = @"motivation";
 NSString *const agentPropertyAssessment = @"assessment";
@@ -61,6 +62,16 @@ NSString *const agentPropertyAssessment = @"assessment";
     CFStringRef fileUUIDString = CFUUIDCreateString(kCFAllocatorDefault, fileUUID);
     CFRelease(fileUUID);
     return (__bridge_transfer NSString *)fileUUIDString;
+}
+
+
+#pragma mark - Fetch requests
+
++ (NSFetchRequest *) fetchAllAgentsByName {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:agentEntityName];
+    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
+    fetchRequest.sortDescriptors = @[ nameSortDescriptor ];
+    return fetchRequest;
 }
 
 @end
