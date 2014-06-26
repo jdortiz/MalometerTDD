@@ -201,6 +201,25 @@
 }
 
 
+#pragma mark - Picture logic
+
+- (void) testGeneratedPictureUUIDIsNotNil {
+    XCTAssertNotNil([sut generatePictureUUID], @"Generated picture UUID must not be nil.");
+}
+
+
+- (void) testGeneratedPictureUUIDLengthIsMoreThanTen {
+    XCTAssertTrue([[sut generatePictureUUID] length] > 10, @"Generated picture UUID length must be more than 10.");
+}
+
+
+- (void) testGeneratedPictureUUIDMustBeDifferentEachTime {
+    NSString *uuid1 = [sut generatePictureUUID];
+    NSString *uuid2 = [sut generatePictureUUID];
+    XCTAssertNotEqualObjects(uuid1, uuid2, @"Generated picture UUID must be different each time.");
+}
+
+
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
