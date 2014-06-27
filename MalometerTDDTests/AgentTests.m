@@ -220,6 +220,52 @@
 }
 
 
+#pragma mark - Fetch requests
+
+- (void) testFetchAllAgentsByNameIsNotNil {
+    XCTAssertNotNil([Agent fetchAllAgentsByName], @"Fetch all the agents by name must return a not nil request.");
+}
+
+
+- (void) testFetchAllAgentsByNameHasSortDescriptors {
+    NSFetchRequest *fetchRequest = [Agent fetchAllAgentsByName];
+    
+    XCTAssertNotNil(fetchRequest.sortDescriptors, @"Fetch all agents by name must use sort descriptors.");
+}
+
+
+- (void) testFetchAllAgentsByNameFirstSortDescriptorIsName {
+    NSFetchRequest *fetchRequest = [Agent fetchAllAgentsByName];
+    NSSortDescriptor *sortDescriptor = [fetchRequest.sortDescriptors objectAtIndex:0];
+    XCTAssertEqual(sortDescriptor.key, agentPropertyName, @"Fetch all agents by name must use sort descriptors.");
+}
+
+
+- (void) testFetchAllAgentsWithSortDescriptorsIsNotNil {
+    XCTAssertNotNil([Agent fetchAllAgentsWithSortDescriptors:nil], @"Fetch all the agents with sort descriptors must return a not nil request.");
+}
+
+
+- (void) testFetchAllAgentsWithSortDescriptorsPreservesSortDescriptors {
+    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
+    NSArray *sortDescriptors = @[ nameSortDescriptor];
+    NSFetchRequest *fetchRequest = [Agent fetchAllAgentsWithSortDescriptors:sortDescriptors];
+    XCTAssertEqual(fetchRequest.sortDescriptors, sortDescriptors, @"Fetch all agents with sort descriptors must preserve sort descriptors.");
+}
+
+
+- (void) testFetchAllAgentsWithPredicateIsNotNil {
+    XCTAssertNotNil([Agent fetchAllAgentsWithPredicate:nil], @"Fetch all the agents with predicate must return a not nil request.");
+}
+
+
+- (void) testFetchAllAgentsWithPredicatePreservesPredicate {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == 'john'"];
+    NSFetchRequest *fetchRequest = [Agent fetchAllAgentsWithPredicate:predicate];
+    XCTAssertEqual(fetchRequest.predicate, predicate, @"Fetch all agents with predicate must preserve predicate.");
+}
+
+
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

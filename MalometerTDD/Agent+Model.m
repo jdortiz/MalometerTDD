@@ -9,6 +9,7 @@
 #import "Agent+Model.h"
 
 NSString *const agentEntityName = @"Agent";
+NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
 NSString *const agentPropertyMotivation = @"motivation";
 NSString *const agentPropertyAssessment = @"assessment";
@@ -61,6 +62,36 @@ NSString *const agentPropertyAssessment = @"assessment";
     CFStringRef fileUUIDString = CFUUIDCreateString(kCFAllocatorDefault, fileUUID);
     CFRelease(fileUUID);
     return (__bridge_transfer NSString *)fileUUIDString;
+}
+
+
+#pragma mark - Fetch requests
+
++ (NSFetchRequest *) fetchAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) fetchAllAgentsByName {
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
+    fetchRequest.sortDescriptors = @[ nameSortDescriptor ];
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) fetchAllAgentsWithPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    fetchRequest.predicate =  predicate;
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) baseFetchRequest {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:agentEntityName];
+    return fetchRequest;
 }
 
 @end
