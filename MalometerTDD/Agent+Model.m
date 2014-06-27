@@ -67,10 +67,30 @@ NSString *const agentPropertyAssessment = @"assessment";
 
 #pragma mark - Fetch requests
 
++ (NSFetchRequest *) fetchAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    return fetchRequest;
+}
+
+
 + (NSFetchRequest *) fetchAllAgentsByName {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:agentEntityName];
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
     NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
     fetchRequest.sortDescriptors = @[ nameSortDescriptor ];
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) fetchAllAgentsWithPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [self baseFetchRequest];
+    fetchRequest.predicate =  predicate;
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) baseFetchRequest {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:agentEntityName];
     return fetchRequest;
 }
 

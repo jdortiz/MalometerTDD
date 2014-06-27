@@ -19,6 +19,8 @@ extern NSString *const agentPropertyAssessment;
 
 + (instancetype) agentInMOC:(NSManagedObjectContext *)moc;
 - (NSString *) generatePictureUUID;
++ (NSFetchRequest *) fetchAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors;
 + (NSFetchRequest *) fetchAllAgentsByName;
++ (NSFetchRequest *) fetchAllAgentsWithPredicate:(NSPredicate *)predicate;
 
 @end
