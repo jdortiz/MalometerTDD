@@ -7,6 +7,7 @@
 //
 
 #import "Agent.h"
+#import "Domain.h"
 #import "FreakType.h"
 
 
@@ -17,5 +18,6 @@
 @dynamic motivation;
 @dynamic name;
 @dynamic category;
+@dynamic domains;
 
 @end
