@@ -5,8 +5,14 @@
         <attribute name="destructionPower" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="motivation" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FreakType" inverseName="agents" inverseEntity="FreakType" syncable="YES"/>
+    </entity>
+    <entity name="FreakType" representedClassName="FreakType" syncable="YES">
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="agents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Agent" inverseName="category" inverseEntity="Agent" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Agent" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Agent" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="FreakType" positionX="-63" positionY="9" width="128" height="73"/>
     </elements>
 </model>

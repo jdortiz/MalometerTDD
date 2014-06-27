@@ -23,8 +23,11 @@
 		CF17D7A2194504F500A6A88B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D785194504F500A6A88B /* UIKit.framework */; };
 		CF17D7A3194504F500A6A88B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17D787194504F500A6A88B /* CoreData.framework */; };
 		CF17D7AB194504F500A6A88B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF17D7A9194504F500A6A88B /* InfoPlist.strings */; };
+		CF321951195D7415002BAA81 /* FreakType.m in Sources */ = {isa = PBXBuildFile; fileRef = CF321950195D7415002BAA81 /* FreakType.m */; };
+		CF321954195D7415002BAA81 /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF321953195D7415002BAA81 /* Agent.m */; };
+		CF321958195D746B002BAA81 /* FreakType+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF321957195D746B002BAA81 /* FreakType+Model.m */; };
+		CF32195A195D74F5002BAA81 /* FreakTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF321959195D74F5002BAA81 /* FreakTypeTests.m */; };
 		CF34C47A19458C9B00352429 /* MalometerTDD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */; };
-		CF34C47D1945B84400352429 /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF34C47C1945B84400352429 /* Agent.m */; };
 		CF3930E719451321000542E5 /* Agent+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3930E619451321000542E5 /* Agent+Model.m */; };
 		CF3930E919451426000542E5 /* AgentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3930E819451426000542E5 /* AgentTests.m */; };
 /* End PBXBuildFile section */
@@ -60,8 +63,13 @@
 		CF17D79F194504F500A6A88B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CF17D7A8194504F500A6A88B /* MalometerTDDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MalometerTDDTests-Info.plist"; sourceTree = "<group>"; };
 		CF17D7AA194504F500A6A88B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CF34C47B1945B84400352429 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
-		CF34C47C1945B84400352429 /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
+		CF32194F195D7415002BAA81 /* FreakType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreakType.h; sourceTree = "<group>"; };
+		CF321950195D7415002BAA81 /* FreakType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreakType.m; sourceTree = "<group>"; };
+		CF321952195D7415002BAA81 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		CF321953195D7415002BAA81 /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
+		CF321956195D746B002BAA81 /* FreakType+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreakType+Model.h"; sourceTree = "<group>"; };
+		CF321957195D746B002BAA81 /* FreakType+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FreakType+Model.m"; sourceTree = "<group>"; };
+		CF321959195D74F5002BAA81 /* FreakTypeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreakTypeTests.m; sourceTree = "<group>"; };
 		CF3930E519451321000542E5 /* Agent+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Agent+Model.h"; sourceTree = "<group>"; };
 		CF3930E619451321000542E5 /* Agent+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Agent+Model.m"; sourceTree = "<group>"; };
 		CF3930E819451426000542E5 /* AgentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTests.m; sourceTree = "<group>"; };
@@ -134,14 +142,10 @@
 		CF17D789194504F500A6A88B /* MalometerTDD */ = {
 			isa = PBXGroup;
 			children = (
+				CF321955195D7433002BAA81 /* Model */,
 				CF17D792194504F500A6A88B /* JOFAppDelegate.h */,
 				CF17D793194504F500A6A88B /* JOFAppDelegate.m */,
 				CF17D798194504F500A6A88B /* Images.xcassets */,
-				CF34C47B1945B84400352429 /* Agent.h */,
-				CF34C47C1945B84400352429 /* Agent.m */,
-				CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */,
-				CF3930E519451321000542E5 /* Agent+Model.h */,
-				CF3930E619451321000542E5 /* Agent+Model.m */,
 				CF17D78A194504F500A6A88B /* Supporting Files */,
 			);
 			path = MalometerTDD;
@@ -176,10 +180,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CF321955195D7433002BAA81 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF17D795194504F500A6A88B /* MalometerTDD.xcdatamodeld */,
+				CF321952195D7415002BAA81 /* Agent.h */,
+				CF321953195D7415002BAA81 /* Agent.m */,
+				CF32194F195D7415002BAA81 /* FreakType.h */,
+				CF321950195D7415002BAA81 /* FreakType.m */,
+				CF3930E519451321000542E5 /* Agent+Model.h */,
+				CF3930E619451321000542E5 /* Agent+Model.m */,
+				CF321956195D746B002BAA81 /* FreakType+Model.h */,
+				CF321957195D746B002BAA81 /* FreakType+Model.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		CFB42E92195CDF2C00BB3A4E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CF3930E819451426000542E5 /* AgentTests.m */,
+				CF321959195D74F5002BAA81 /* FreakTypeTests.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -347,10 +368,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF321958195D746B002BAA81 /* FreakType+Model.m in Sources */,
 				CF17D797194504F500A6A88B /* MalometerTDD.xcdatamodeld in Sources */,
 				CF3930E719451321000542E5 /* Agent+Model.m in Sources */,
 				CF17D794194504F500A6A88B /* JOFAppDelegate.m in Sources */,
-				CF34C47D1945B84400352429 /* Agent.m in Sources */,
+				CF321954195D7415002BAA81 /* Agent.m in Sources */,
+				CF321951195D7415002BAA81 /* FreakType.m in Sources */,
 				CF17D790194504F500A6A88B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF32195A195D74F5002BAA81 /* FreakTypeTests.m in Sources */,
 				CF3930E919451426000542E5 /* AgentTests.m in Sources */,
 				CF34C47A19458C9B00352429 /* MalometerTDD.xcdatamodeld in Sources */,
 			);
