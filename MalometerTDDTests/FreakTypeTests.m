@@ -19,6 +19,8 @@
     NSManagedObjectContext *context;
     // Object to test.
     FreakType *sut;
+    // Other objects
+    FreakType *freakType1;
 }
 
 @end
@@ -29,6 +31,7 @@
 #pragma mark - Constants & Parameters
 
 static NSString *const freakTypeNameMain = @"Type1";
+static NSString *const freakTypeNameAlt = @"Type2";
 
 #pragma mark - Set up and tear down
 
@@ -56,7 +59,7 @@ static NSString *const freakTypeNameMain = @"Type1";
 
 
 - (void) createFixture {
-    // Test data
+    freakType1 = [FreakType freakTypeInMOC:context withName:freakTypeNameAlt];
 }
 
 
@@ -80,7 +83,7 @@ static NSString *const freakTypeNameMain = @"Type1";
 
 
 - (void) releaseFixture {
-
+    freakType1 = nil;
 }
 
 
@@ -98,9 +101,20 @@ static NSString *const freakTypeNameMain = @"Type1";
     XCTAssertNotNil(sut, @"The object to test must be created in setUp.");
 }
 
+
+#pragma mark - Data persistence
+
 - (void) testConvenienceConstructorPreservesName {
     XCTAssertEqualObjects(sut.name, freakTypeNameMain,
                           @"FreakType convenience constructor must preserve name.");
+}
+
+
+#pragma mark - Fetches
+
+- (void) testFetchesFreakTypeWithGivenName {
+    XCTAssertEqual([FreakType fetchInMOC:context withName:freakTypeNameMain], sut,
+                   @"Fetch FreakType with name must retrieve the right object.");
 }
 
 

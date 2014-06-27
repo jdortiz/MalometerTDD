@@ -16,5 +16,6 @@ extern NSString *const freakTypeEntityName;
 @interface FreakType (Model)
 
 + (instancetype) freakTypeInMOC:(NSManagedObjectContext *)moc withName:(NSString *)name;
++ (FreakType *) fetchInMOC:(NSManagedObjectContext *)moc withName:(NSString *)name;
 
 @end
