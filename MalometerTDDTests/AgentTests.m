@@ -266,6 +266,30 @@
 }
 
 
+#pragma mark - Agent name validation
+
+- (void) testEmptyAgentNameCannotBeSaved {
+    sut.name = @"";
+    NSError *error;
+    XCTAssertFalse([context save:&error], @"Empty agent name must not be allowed when saving");
+}
+
+
+- (void) testAgentNameWithOnlySpacesCannotBeSaved {
+    sut.name = @"  ";
+    NSError *error;
+    XCTAssertFalse([context save:&error], @"Agent name with only spaces must not be allowed when saving");
+}
+
+
+- (void) testAgentNameWithOnlySpacesValidationReturnsAppropiateError {
+    NSString *name = @" ";
+    NSError *error;
+    [sut validateName:&name error:&error];
+    
+    XCTAssertNotNil(error, @"An error must be returned when name is not validated.");
+    XCTAssertEqual(error.code, AgentErrorCodeNameEmpty, @"Appropiate error code must be returned when name is not validated.");
+}
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

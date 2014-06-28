@@ -8,6 +8,12 @@
 
 #import "Agent.h"
 
+typedef NS_ENUM(NSUInteger, AgentErrorCode) {
+    AgentErrorCodeNameNotDefined = 1,
+    AgentErrorCodeNameEmpty
+};
+
+
 extern NSString *const agentEntityName;
 extern NSString *const agentPropertyName;
 extern NSString *const agentPropertyDestructionPower;
@@ -22,5 +28,6 @@ extern NSString *const agentPropertyAssessment;
 + (NSFetchRequest *) fetchAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors;
 + (NSFetchRequest *) fetchAllAgentsByName;
 + (NSFetchRequest *) fetchAllAgentsWithPredicate:(NSPredicate *)predicate;
+- (BOOL) validateName:(NSString **)name error:(NSError *__autoreleasing *)error;
 
 @end
