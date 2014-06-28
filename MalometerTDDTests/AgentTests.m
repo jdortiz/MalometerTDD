@@ -11,6 +11,7 @@
 #import <OCMock.h>
 #import "Agent+Model.h"
 #import "FreakType+Model.h"
+#import "Domain+Model.h"
 
 
 @interface AgentTests : XCTestCase {
@@ -23,6 +24,8 @@
     Agent *sut;
     // Other objects
     FreakType *freakType1;
+    Domain *domain1;
+    Domain *domain2;
     
     // Change
     BOOL changeFlag;
@@ -40,6 +43,8 @@ static const NSUInteger agentDestructPowerMain = 2;
 static const NSUInteger agentMotivationMain = 4;
 
 static NSString *const freakTypeMainName = @"Category0";
+static NSString *const domainMainName = @"Domain0";
+static NSString *const domainAltName = @"Domain1";
 
 
 #pragma mark - Set up and tear down
@@ -75,6 +80,8 @@ static NSString *const freakTypeMainName = @"Category0";
 
 - (void) createFixture {
     freakType1 = [FreakType freakTypeInMOC:context withName:freakTypeMainName];
+    domain1 = [Domain domainInMOC:context withName:domainMainName];
+    domain2 = [Domain domainInMOC:context withName:domainAltName];
 }
 
 
@@ -99,6 +106,8 @@ static NSString *const freakTypeMainName = @"Category0";
 
 - (void) releaseFixture {
     freakType1 = nil;
+    domain1 = nil;
+    domain2 = nil;
 }
 
 
@@ -335,6 +344,16 @@ static NSString *const freakTypeMainName = @"Category0";
     XCTAssertEqual(agent.category, freakType1,
                    @"Agent created with imported must be related to the FreakType with the given name.");
 }
+
+
+- (void) testImportingInitializerEstablishesRelationshipWithDomainsWithNames {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{@"domainNames": @[domainMainName, domainAltName]}];
+    XCTAssertTrue([agent.domains containsObject:domain1],
+                  @"Agent created with imported must be related to the Domains with the given names.");
+    XCTAssertTrue([agent.domains containsObject:domain2],
+                  @"Agent created with imported must be related to the Domains with the given names.");
+}
+
 
 #pragma mark - Observation
 

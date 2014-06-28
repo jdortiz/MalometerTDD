@@ -8,6 +8,7 @@
 
 #import "Agent+Model.h"
 #import "FreakType+Model.h"
+#import "Domain+Model.h"
 
 NSString *const agentEntityName = @"Agent";
 NSString *const agentPropertyName = @"name";
@@ -34,7 +35,11 @@ NSString *const agentErrorDomain = @"AgentModelError";
     agent.motivation = dict[agentPropertyMotivation];
     agent.category = [FreakType fetchInMOC:agent.managedObjectContext
                                   withName:dict[@"freakTypeName"]];
-
+    NSMutableSet *domains = [[NSMutableSet alloc] init];
+    for (NSString *domainName in dict[@"domainNames"]) {
+        [domains addObject:[Domain fetchInMOC:agent.managedObjectContext withName:domainName]];
+    }
+    agent.domains = domains;
     return agent;
 }
 
