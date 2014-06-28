@@ -12,6 +12,8 @@
 NSString *const freakTypesKey = @"FreakTypes";
 NSString *const domainsKey = @"Domains";
 NSString *const agentsKey = @"Agents";
+NSString *const initialDataResource = @"initialAgentData";
+NSString *const initialDataExtension = @"sqlite";
 
 
 @implementation JOFMalometerDocument
@@ -41,6 +43,39 @@ NSString *const agentsKey = @"Agents";
     for (NSDictionary *agentDict in agentDictionaries) {
         [Agent agentInMOC:self.managedObjectContext withDictionary:agentDict];
     }
+}
+
+
+#pragma mark - Preload data
+
+- (BOOL) configurePersistentStoreCoordinatorForURL:(NSURL *)storeURL ofType:(NSString *)fileType modelConfiguration:(NSString *)configuration storeOptions:(NSDictionary *)storeOptions error:(NSError *__autoreleasing *)error {
+    if (![self.fileManager fileExistsAtPath:[storeURL path]]) {
+        NSError *error;
+        [self.fileManager copyItemAtURL:self.initialDataURL
+                                  toURL:storeURL error:&error];
+    }
+    return [super configurePersistentStoreCoordinatorForURL:storeURL ofType:fileType
+                                         modelConfiguration:configuration storeOptions:storeOptions
+                                                      error:error];
+}
+
+
+#pragma mark - Lazy loaded properties for dependency injection
+
+- (NSFileManager *) fileManager {
+    if (_fileManager == nil) {
+        _fileManager = [NSFileManager defaultManager];
+    }
+    return _fileManager;
+}
+
+
+- (NSURL *) initialDataURL {
+    if (_initialDataURL == nil) {
+        _initialDataURL = [[NSBundle mainBundle] URLForResource:initialDataResource
+                                                  withExtension:initialDataExtension];
+    }
+    return _initialDataURL;
 }
 
 @end

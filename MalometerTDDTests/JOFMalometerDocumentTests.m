@@ -8,7 +8,7 @@
 
 
 #import <XCTest/XCTest.h>
-//#import <OCMock/OCMock.h>
+#import <OCMock/OCMock.h>
 #import "JOFMalometerDocument.h"
 
 
@@ -266,6 +266,44 @@ static const NSUInteger agentAltMotivation = 5;
                           @"Import data must create Agents with the provided freak type.");
     XCTAssertEqual([agent.domains count], (NSUInteger)2,
                           @"Import data must create Agents with the provided domains.");
+}
+
+
+#pragma mark - Preloading data
+
+- (void) testConfigurePersistentStoreCopiesInitialDataIfNotExists {
+    NSURL *storeURL = [NSURL URLWithString:@"file:///App/Documents/DocFile/store"];
+    NSURL *dataURL = [NSURL URLWithString:@"file:///App/initialData.sqlite"];
+    NSError *__autoreleasing *error = (NSError *__autoreleasing *) [OCMArg anyPointer];
+    id fileManagerMock = [OCMockObject mockForClass:[NSFileManager class]];
+    [[[fileManagerMock expect] andReturnValue:OCMOCK_VALUE((BOOL){NO})] fileExistsAtPath:OCMOCK_ANY];
+    [[[fileManagerMock expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] copyItemAtURL:dataURL toURL:storeURL error:error];
+
+    sut.initialDataURL = dataURL;
+    sut.fileManager = fileManagerMock;
+    
+    NSError *err;
+    [sut configurePersistentStoreCoordinatorForURL:storeURL ofType:nil modelConfiguration:nil
+                                      storeOptions:nil error:&err];
+    
+    XCTAssertNoThrow([fileManagerMock verify], @"Initial data must be loaded if it doesn't exist.");
+}
+
+
+- (void) testConfigurePersistentStoreDoesntCopyInitialDataExists {
+    NSURL *storeURL = [NSURL URLWithString:@"file:///App/Documents/DocFile/store"];
+    NSURL *dataURL = [NSURL URLWithString:@"file:///App/initialData.sqlite"];
+    id fileManagerMock = [OCMockObject mockForClass:[NSFileManager class]];
+    [[[fileManagerMock expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] fileExistsAtPath:OCMOCK_ANY];
+    
+    sut.initialDataURL = dataURL;
+    sut.fileManager = fileManagerMock;
+    
+    NSError *err;
+    [sut configurePersistentStoreCoordinatorForURL:storeURL ofType:nil modelConfiguration:nil
+                                      storeOptions:nil error:&err];
+    
+    XCTAssertNoThrow([fileManagerMock verify], @"Initial data must be loaded if it doesn't exist.");
 }
 
 @end
