@@ -7,6 +7,7 @@
 //
 
 #import "Agent+Model.h"
+#import "FreakType+Model.h"
 
 NSString *const agentEntityName = @"Agent";
 NSString *const agentPropertyName = @"name";
@@ -31,6 +32,8 @@ NSString *const agentErrorDomain = @"AgentModelError";
     agent.name = dict[agentPropertyName];
     agent.destructionPower = dict[agentPropertyDestructionPower];
     agent.motivation = dict[agentPropertyMotivation];
+    agent.category = [FreakType fetchInMOC:agent.managedObjectContext
+                                  withName:dict[@"freakTypeName"]];
 
     return agent;
 }

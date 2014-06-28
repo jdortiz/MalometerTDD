@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import <OCMock.h>
 #import "Agent+Model.h"
+#import "FreakType+Model.h"
 
 
 @interface AgentTests : XCTestCase {
@@ -20,6 +21,8 @@
     NSManagedObjectContext *context;
     // Object to test.
     Agent *sut;
+    // Other objects
+    FreakType *freakType1;
     
     // Change
     BOOL changeFlag;
@@ -36,6 +39,8 @@ static NSString *const agentNameMain = @"Agent0";
 static const NSUInteger agentDestructPowerMain = 2;
 static const NSUInteger agentMotivationMain = 4;
 
+static NSString *const freakTypeMainName = @"Category0";
+
 
 #pragma mark - Set up and tear down
 
@@ -44,6 +49,7 @@ static const NSUInteger agentMotivationMain = 4;
 
     [self createCoreDataStack];
     [self createSut];
+    [self createFixture];
     [self resetChangeFlag];
 }
 
@@ -67,6 +73,11 @@ static const NSUInteger agentMotivationMain = 4;
 }
 
 
+- (void) createFixture {
+    freakType1 = [FreakType freakTypeInMOC:context withName:freakTypeMainName];
+}
+
+
 - (void) resetChangeFlag {
     changeFlag = NO;
 }
@@ -74,6 +85,7 @@ static const NSUInteger agentMotivationMain = 4;
 
 - (void) tearDown {
     [self releaseSut];
+    [self releaseFixture];
     [self releaseCoreDataStack];
 
     [super tearDown];
@@ -82,6 +94,11 @@ static const NSUInteger agentMotivationMain = 4;
 
 - (void) releaseSut {
     sut = nil;
+}
+
+
+- (void) releaseFixture {
+    freakType1 = nil;
 }
 
 
@@ -310,6 +327,14 @@ static const NSUInteger agentMotivationMain = 4;
                    @"Agent created with importer constructor must preserve motivation.");
 }
 
+
+#pragma mark - Import relationships
+
+- (void) testImportingInitializerEstablishesRelationshipWithFreakTypeWithName {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{@"freakTypeName": freakTypeMainName}];
+    XCTAssertEqual(agent.category, freakType1,
+                   @"Agent created with imported must be related to the FreakType with the given name.");
+}
 
 #pragma mark - Observation
 
