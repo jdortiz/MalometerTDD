@@ -36,7 +36,6 @@
     [super setUp];
 
     [self createCoreDataStack];
-    [self createFixture];
     [self createSut];
     [self resetChangeFlag];
 }
@@ -56,11 +55,6 @@
 }
 
 
-- (void) createFixture {
-    // Test data
-}
-
-
 - (void) createSut {
     sut = [Agent agentInMOC:context];
 }
@@ -73,7 +67,6 @@
 
 - (void) tearDown {
     [self releaseSut];
-    [self releaseFixture];
     [self releaseCoreDataStack];
 
     [super tearDown];
@@ -82,11 +75,6 @@
 
 - (void) releaseSut {
     sut = nil;
-}
-
-
-- (void) releaseFixture {
-
 }
 
 
@@ -101,11 +89,6 @@
 #pragma mark - Basic test
 
 - (void) testObjectIsNotNil {
-    // Prepare
-
-    // Operate
-
-    // Check
     XCTAssertNotNil(sut, @"The object to test must be created in setUp.");
 }
 
