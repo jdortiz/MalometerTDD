@@ -30,6 +30,13 @@
 
 @implementation AgentTests
 
+#pragma mark - Constants & Parameters
+
+static NSString *const agentNameMain = @"Agent0";
+static const NSUInteger agentDestructPowerMain = 2;
+static const NSUInteger agentMotivationMain = 4;
+
+
 #pragma mark - Set up and tear down
 
 - (void) setUp {
@@ -273,6 +280,37 @@
     XCTAssertNotNil(error, @"An error must be returned when name is not validated.");
     XCTAssertEqual(error.code, AgentErrorCodeNameEmpty, @"Appropiate error code must be returned when name is not validated.");
 }
+
+
+#pragma mark - Importing data
+
+- (void) testNotNilAgentIsCreatedWithImportingInitializer {
+    XCTAssertNotNil([Agent agentInMOC:context withDictionary:nil],
+                    @"Agent created with importer constructor must not be nil.");
+}
+
+
+- (void) testImportingInitializerPreservesName {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyName: agentNameMain}];
+    XCTAssertEqual(agent.name, agentNameMain,
+                   @"Agent created with importer constructor must preserve name.");
+}
+
+
+- (void) testImportingInitializerPreservesDestructionPower {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyDestructionPower: @(agentDestructPowerMain)}];
+    XCTAssertEqual([agent.destructionPower unsignedIntegerValue], agentDestructPowerMain,
+                   @"Agent created with importer constructor must preserve destruction power.");
+}
+
+
+- (void) testImportingInitializerPreservesMotivation {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyMotivation: @(agentMotivationMain)}];
+    XCTAssertEqual([agent.motivation unsignedIntegerValue], agentMotivationMain,
+                   @"Agent created with importer constructor must preserve motivation.");
+}
+
+
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

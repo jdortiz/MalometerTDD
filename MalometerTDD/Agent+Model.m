@@ -18,13 +18,25 @@ NSString *const agentErrorDomain = @"AgentModelError";
 
 @implementation Agent (Model)
 
-#pragma mark - Convenience constructor
+#pragma mark - Convenience constructors
 
 + (instancetype) agentInMOC:(NSManagedObjectContext *)moc {
     return [NSEntityDescription insertNewObjectForEntityForName:agentEntityName
                                          inManagedObjectContext:moc];
 }
 
+
++ (instancetype) agentInMOC:(NSManagedObjectContext *)moc withDictionary:(NSDictionary *)dict {
+    Agent *agent = [Agent agentInMOC:moc];
+    agent.name = dict[agentPropertyName];
+    agent.destructionPower = dict[agentPropertyDestructionPower];
+    agent.motivation = dict[agentPropertyMotivation];
+
+    return agent;
+}
+
+
+#pragma mark - Properties
 
 - (NSNumber *) assessment {
     [self willAccessValueForKey:agentPropertyAssessment];
