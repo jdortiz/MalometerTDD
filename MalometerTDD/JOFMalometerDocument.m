@@ -10,14 +10,29 @@
 #import "JOFMalometerDocument.h"
 
 NSString *const freakTypesKey = @"FreakTypes";
+NSString *const domainsKey = @"Domains";
 
 
 @implementation JOFMalometerDocument
 
 - (void) importData:(NSDictionary *)dictionary {
-    for (NSDictionary *freakTypeDict in dictionary[freakTypesKey]) {
+    [self importFreakTypes:dictionary[freakTypesKey]];
+    [self importDomains:dictionary[domainsKey]];
+}
+
+
+- (void) importFreakTypes:(NSArray *)freakTypesDictionaries {
+    for (NSDictionary *freakTypeDict in freakTypesDictionaries) {
         [FreakType freakTypeInMOC:self.managedObjectContext withDictionary:freakTypeDict];
     }
 }
+
+
+- (void) importDomains:(NSArray *)domainsDictionaries {
+    for (NSDictionary *domainDict in domainsDictionaries) {
+        [Domain domainInMOC:self.managedObjectContext withDictionary:domainDict];
+    }
+}
+
 
 @end
