@@ -6,8 +6,18 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
+
 #import "JOFMalometerDocument.h"
 
+NSString *const freakTypesKey = @"FreakTypes";
+
+
 @implementation JOFMalometerDocument
+
+- (void) importData:(NSDictionary *)dictionary {
+    for (NSDictionary *freakTypeDict in dictionary[freakTypesKey]) {
+        [FreakType freakTypeInMOC:self.managedObjectContext withDictionary:freakTypeDict];
+    }
+}
 
 @end

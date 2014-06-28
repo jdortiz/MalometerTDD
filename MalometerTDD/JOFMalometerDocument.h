@@ -6,8 +6,15 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
+#import "FreakType+Model.h"
+
+extern NSString *const freakTypesKey;
+
 
 @interface JOFMalometerDocument : UIManagedDocument
+
+- (void) importData:(NSDictionary *)dictionary;
 
 @end

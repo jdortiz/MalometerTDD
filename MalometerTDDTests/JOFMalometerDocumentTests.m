@@ -27,6 +27,12 @@
 
 @implementation JOFMalometerDocumentTests
 
+#pragma mark - Constants & Parameters
+
+static NSString *const freakTypeMainName = @"Category0";
+static NSString *const freakTypeAltName = @"Category1";
+
+
 #pragma mark - Set up and tear down
 
 - (void) setUp {
@@ -105,6 +111,49 @@
 - (void) testMOCAssignment {
     XCTAssertEqualObjects(sut.managedObjectContext, context,
                           @"Managed object context must be injected for other tests to work.");
+}
+
+
+#pragma mark - Import data
+
+- (void) testImportDataCreatesOneFreakTypeWhenDataContainsOne {
+    NSDictionary *data = @{freakTypesKey: @[@{freakTypePropertyName: freakTypeMainName}]};
+
+    [sut importData:data];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:freakTypeEntityName]
+                                              error:&error];
+    XCTAssertEqual(results.count, (NSUInteger)1,
+                   @"Import data must create one FreakType and only one when that is provided in the data");
+}
+
+
+- (void) testImportDataCreatesTwoFreakTypesWhenDataContainsTwo {
+    NSDictionary *data = @{freakTypesKey: @[@{freakTypePropertyName: freakTypeMainName},
+                                            @{freakTypePropertyName: freakTypeAltName}]};
+    
+    [sut importData:data];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:freakTypeEntityName]
+                                              error:&error];
+    XCTAssertEqual(results.count, (NSUInteger)2,
+                   @"Import data must create two FreakType and only two when that is provided in the data");
+}
+
+
+- (void) testImportDataCreatesAFreakTypeWithDataInItsDictionary {
+    NSDictionary *data = @{freakTypesKey: @[@{freakTypePropertyName: freakTypeMainName}]};
+    
+    [sut importData:data];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:freakTypeEntityName]
+                                              error:&error];
+    FreakType *freakType = [results lastObject];
+    XCTAssertEqualObjects(freakType.name, freakTypeMainName,
+                   @"Import data must create FreakTypes with the provided data");
 }
 
 @end
