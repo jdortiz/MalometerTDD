@@ -32,7 +32,7 @@
 - (void) setUp {
     [super setUp];
 
-//    [self createCoreDataStack];
+    [self createCoreDataStack];
 //    [self createFixture];
     [self createSut];
 }
@@ -47,7 +47,7 @@
                                                 URL: nil
                                             options: nil
                                               error: NULL];
-    context = [[NSManagedObjectContext alloc] init];
+    context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     context.persistentStoreCoordinator = coordinator;
 }
 
@@ -62,13 +62,14 @@
                                                              inDomains:NSUserDomainMask] lastObject];
     NSURL *fakeURL = [docsURL URLByAppendingPathComponent:@"nofile"];
     sut = [[JOFMalometerDocument alloc] initWithFileURL:fakeURL];
+    [sut setValue:context forKey:@"managedObjectContext"];
 }
 
 
 - (void) tearDown {
     [self releaseSut];
 //    [self releaseFixture];
-//    [self releaseCoreDataStack];
+    [self releaseCoreDataStack];
 
     [super tearDown];
 }
@@ -95,12 +96,15 @@
 #pragma mark - Basic test
 
 - (void) testObjectIsNotNil {
-    // Prepare
-
-    // Operate
-
-    // Check
     XCTAssertNotNil(sut, @"The object to test must be created in setUp.");
+}
+
+
+#pragma mark - Fake environment
+
+- (void) testMOCAssignment {
+    XCTAssertEqualObjects(sut.managedObjectContext, context,
+                          @"Managed object context must be injected for other tests to work.");
 }
 
 @end
