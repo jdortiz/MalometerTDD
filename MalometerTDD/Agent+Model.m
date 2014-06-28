@@ -7,24 +7,46 @@
 //
 
 #import "Agent+Model.h"
+#import "FreakType+Model.h"
+#import "Domain+Model.h"
 
 NSString *const agentEntityName = @"Agent";
 NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
 NSString *const agentPropertyMotivation = @"motivation";
 NSString *const agentPropertyAssessment = @"assessment";
+NSString *const agentRelationshipFreakTypeName = @"freakTypeName";
+NSString *const agentRelationshipDomainNames = @"domainNames";
 NSString *const agentErrorDomain = @"AgentModelError";
 
 
 @implementation Agent (Model)
 
-#pragma mark - Convenience constructor
+#pragma mark - Convenience constructors
 
 + (instancetype) agentInMOC:(NSManagedObjectContext *)moc {
     return [NSEntityDescription insertNewObjectForEntityForName:agentEntityName
                                          inManagedObjectContext:moc];
 }
 
+
++ (instancetype) agentInMOC:(NSManagedObjectContext *)moc withDictionary:(NSDictionary *)dict {
+    Agent *agent = [Agent agentInMOC:moc];
+    agent.name = dict[agentPropertyName];
+    agent.destructionPower = dict[agentPropertyDestructionPower];
+    agent.motivation = dict[agentPropertyMotivation];
+    agent.category = [FreakType fetchInMOC:agent.managedObjectContext
+                                  withName:dict[agentRelationshipFreakTypeName]];
+    NSMutableSet *domains = [[NSMutableSet alloc] init];
+    for (NSString *domainName in dict[agentRelationshipDomainNames]) {
+        [domains addObject:[Domain fetchInMOC:agent.managedObjectContext withName:domainName]];
+    }
+    agent.domains = domains;
+    return agent;
+}
+
+
+#pragma mark - Properties
 
 - (NSNumber *) assessment {
     [self willAccessValueForKey:agentPropertyAssessment];

@@ -10,6 +10,8 @@
 #import <XCTest/XCTest.h>
 #import <OCMock.h>
 #import "Agent+Model.h"
+#import "FreakType+Model.h"
+#import "Domain+Model.h"
 
 
 @interface AgentTests : XCTestCase {
@@ -20,6 +22,10 @@
     NSManagedObjectContext *context;
     // Object to test.
     Agent *sut;
+    // Other objects
+    FreakType *freakType1;
+    Domain *domain1;
+    Domain *domain2;
     
     // Change
     BOOL changeFlag;
@@ -30,6 +36,17 @@
 
 @implementation AgentTests
 
+#pragma mark - Constants & Parameters
+
+static NSString *const agentNameMain = @"Agent0";
+static const NSUInteger agentDestructPowerMain = 2;
+static const NSUInteger agentMotivationMain = 4;
+
+static NSString *const freakTypeMainName = @"Category0";
+static NSString *const domainMainName = @"Domain0";
+static NSString *const domainAltName = @"Domain1";
+
+
 #pragma mark - Set up and tear down
 
 - (void) setUp {
@@ -37,6 +54,7 @@
 
     [self createCoreDataStack];
     [self createSut];
+    [self createFixture];
     [self resetChangeFlag];
 }
 
@@ -60,6 +78,13 @@
 }
 
 
+- (void) createFixture {
+    freakType1 = [FreakType freakTypeInMOC:context withName:freakTypeMainName];
+    domain1 = [Domain domainInMOC:context withName:domainMainName];
+    domain2 = [Domain domainInMOC:context withName:domainAltName];
+}
+
+
 - (void) resetChangeFlag {
     changeFlag = NO;
 }
@@ -67,6 +92,7 @@
 
 - (void) tearDown {
     [self releaseSut];
+    [self releaseFixture];
     [self releaseCoreDataStack];
 
     [super tearDown];
@@ -75,6 +101,13 @@
 
 - (void) releaseSut {
     sut = nil;
+}
+
+
+- (void) releaseFixture {
+    freakType1 = nil;
+    domain1 = nil;
+    domain2 = nil;
 }
 
 
@@ -273,6 +306,55 @@
     XCTAssertNotNil(error, @"An error must be returned when name is not validated.");
     XCTAssertEqual(error.code, AgentErrorCodeNameEmpty, @"Appropiate error code must be returned when name is not validated.");
 }
+
+
+#pragma mark - Importing data
+
+- (void) testNotNilAgentIsCreatedWithImportingInitializer {
+    XCTAssertNotNil([Agent agentInMOC:context withDictionary:nil],
+                    @"Agent created with importer constructor must not be nil.");
+}
+
+
+- (void) testImportingInitializerPreservesName {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyName: agentNameMain}];
+    XCTAssertEqual(agent.name, agentNameMain,
+                   @"Agent created with importer constructor must preserve name.");
+}
+
+
+- (void) testImportingInitializerPreservesDestructionPower {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyDestructionPower: @(agentDestructPowerMain)}];
+    XCTAssertEqual([agent.destructionPower unsignedIntegerValue], agentDestructPowerMain,
+                   @"Agent created with importer constructor must preserve destruction power.");
+}
+
+
+- (void) testImportingInitializerPreservesMotivation {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{agentPropertyMotivation: @(agentMotivationMain)}];
+    XCTAssertEqual([agent.motivation unsignedIntegerValue], agentMotivationMain,
+                   @"Agent created with importer constructor must preserve motivation.");
+}
+
+
+#pragma mark - Import relationships
+
+- (void) testImportingInitializerEstablishesRelationshipWithFreakTypeWithName {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{@"freakTypeName": freakTypeMainName}];
+    XCTAssertEqual(agent.category, freakType1,
+                   @"Agent created with imported must be related to the FreakType with the given name.");
+}
+
+
+- (void) testImportingInitializerEstablishesRelationshipWithDomainsWithNames {
+    Agent *agent = [Agent agentInMOC:context withDictionary:@{@"domainNames": @[domainMainName, domainAltName]}];
+    XCTAssertTrue([agent.domains containsObject:domain1],
+                  @"Agent created with imported must be related to the Domains with the given names.");
+    XCTAssertTrue([agent.domains containsObject:domain2],
+                  @"Agent created with imported must be related to the Domains with the given names.");
+}
+
+
 #pragma mark - Observation
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

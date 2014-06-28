@@ -161,4 +161,19 @@ static NSString *const domainNameAlt2 = @"domain3";
     XCTAssertEqual([results count], 2, @"Controller domains fetch must return domains with more than one powerful agent and only those.");
 }
 
+
+#pragma mark - Importing data
+
+- (void) testNotNilAgentIsCreatedWithImportingInitializer {
+    XCTAssertNotNil([Domain domainInMOC:context withDictionary:nil],
+                    @"Domain created with importer constructor must not be nil.");
+}
+
+
+- (void) testImportingInitializerPreservesName {
+    Domain *domain = [Domain domainInMOC:context withDictionary:@{domainPropertyName: domainNameMain}];
+    XCTAssertEqual(domain.name, domainNameMain,
+                   @"FreakType created with importer constructor must preserve name.");
+}
+
 @end

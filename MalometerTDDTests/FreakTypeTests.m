@@ -118,4 +118,18 @@ static NSString *const freakTypeNameAlt = @"Type2";
 }
 
 
+#pragma mark - Importing data
+
+- (void) testNotNilAgentIsCreatedWithImportingInitializer {
+    XCTAssertNotNil([FreakType freakTypeInMOC:context withDictionary:nil],
+                    @"FreakType created with importer constructor must not be nil.");
+}
+
+
+- (void) testImportingInitializerPreservesName {
+    FreakType *freakType = [FreakType freakTypeInMOC:context withDictionary:@{freakTypePropertyName: freakTypeNameMain}];
+    XCTAssertEqual(freakType.name, freakTypeNameMain,
+                   @"FreakType created with importer constructor must preserve name.");
+}
+
 @end

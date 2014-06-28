@@ -10,11 +10,13 @@
 #import "Domain.h"
 
 extern NSString *const domainEntityName;
+extern NSString *const domainPropertyName;
 
 
 @interface Domain (Model)
 
 + (instancetype) domainInMOC:(NSManagedObjectContext *)moc withName:(NSString *)name;
++ (instancetype) domainInMOC:(NSManagedObjectContext *)moc withDictionary:(NSDictionary *)dict;
 + (Domain *) fetchInMOC:(NSManagedObjectContext *)moc withName:(NSString *)name;
 + (NSFetchRequest *) fetchRequestControlledDomains;
 
