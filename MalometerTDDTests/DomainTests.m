@@ -156,10 +156,9 @@ static NSString *const domainNameAlt2 = @"domain3";
     NSError *err;
     NSArray *results = [context executeFetchRequest:fetchRequest error:&err];
     
-    
-    XCTAssertTrue([results containsObject:sut], @"");
-    XCTAssertTrue([results containsObject:domain1], @"");
-    XCTAssertEqual([results count], 2, @"");
+    XCTAssertTrue([results containsObject:sut], @"Controller domains fetch must return domains with more than one powerful agent.");
+    XCTAssertTrue([results containsObject:domain1], @"Controller domains fetch must return domains with more than one powerful agent.");
+    XCTAssertEqual([results count], 2, @"Controller domains fetch must return domains with more than one powerful agent and only those.");
 }
 
 @end
