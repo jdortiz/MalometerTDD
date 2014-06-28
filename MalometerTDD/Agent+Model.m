@@ -13,6 +13,7 @@ NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
 NSString *const agentPropertyMotivation = @"motivation";
 NSString *const agentPropertyAssessment = @"assessment";
+NSString *const agentErrorDomain = @"AgentModelError";
 
 
 @implementation Agent (Model)
@@ -62,6 +63,26 @@ NSString *const agentPropertyAssessment = @"assessment";
     CFStringRef fileUUIDString = CFUUIDCreateString(kCFAllocatorDefault, fileUUID);
     CFRelease(fileUUID);
     return (__bridge_transfer NSString *)fileUUIDString;
+}
+
+
+#pragma mark - Validation
+
+- (BOOL) validateName:(NSString **)name error:(NSError *__autoreleasing *)error {
+    BOOL validated = NO;
+    if (name != nil) {
+        NSString *nameWithoutSpace = [*name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (nameWithoutSpace.length > 0) {
+            validated = YES;
+        } else {
+            *error = [NSError errorWithDomain:agentErrorDomain
+                                         code:AgentErrorCodeNameEmpty userInfo:nil];
+        }
+    } else {
+        *error = [NSError errorWithDomain:agentErrorDomain
+                                     code:AgentErrorCodeNameNotDefined userInfo:nil];
+    }
+    return validated;
 }
 
 
