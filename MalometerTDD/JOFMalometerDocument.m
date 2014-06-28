@@ -11,6 +11,7 @@
 
 NSString *const freakTypesKey = @"FreakTypes";
 NSString *const domainsKey = @"Domains";
+NSString *const agentsKey = @"Agents";
 
 
 @implementation JOFMalometerDocument
@@ -18,21 +19,28 @@ NSString *const domainsKey = @"Domains";
 - (void) importData:(NSDictionary *)dictionary {
     [self importFreakTypes:dictionary[freakTypesKey]];
     [self importDomains:dictionary[domainsKey]];
+    [self importAgents:dictionary[agentsKey]];
 }
 
 
-- (void) importFreakTypes:(NSArray *)freakTypesDictionaries {
-    for (NSDictionary *freakTypeDict in freakTypesDictionaries) {
+- (void) importFreakTypes:(NSArray *)freakTypeDictionaries {
+    for (NSDictionary *freakTypeDict in freakTypeDictionaries) {
         [FreakType freakTypeInMOC:self.managedObjectContext withDictionary:freakTypeDict];
     }
 }
 
 
-- (void) importDomains:(NSArray *)domainsDictionaries {
-    for (NSDictionary *domainDict in domainsDictionaries) {
+- (void) importDomains:(NSArray *)domainDictionaries {
+    for (NSDictionary *domainDict in domainDictionaries) {
         [Domain domainInMOC:self.managedObjectContext withDictionary:domainDict];
     }
 }
 
+
+- (void) importAgents:(NSArray *)agentDictionaries {
+    for (NSDictionary *agentDict in agentDictionaries) {
+        [Agent agentInMOC:self.managedObjectContext withDictionary:agentDict];
+    }
+}
 
 @end

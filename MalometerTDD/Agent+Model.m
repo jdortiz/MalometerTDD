@@ -15,6 +15,8 @@ NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
 NSString *const agentPropertyMotivation = @"motivation";
 NSString *const agentPropertyAssessment = @"assessment";
+NSString *const agentRelationshipFreakTypeName = @"freakTypeName";
+NSString *const agentRelationshipDomainNames = @"domainNames";
 NSString *const agentErrorDomain = @"AgentModelError";
 
 
@@ -34,9 +36,9 @@ NSString *const agentErrorDomain = @"AgentModelError";
     agent.destructionPower = dict[agentPropertyDestructionPower];
     agent.motivation = dict[agentPropertyMotivation];
     agent.category = [FreakType fetchInMOC:agent.managedObjectContext
-                                  withName:dict[@"freakTypeName"]];
+                                  withName:dict[agentRelationshipFreakTypeName]];
     NSMutableSet *domains = [[NSMutableSet alloc] init];
-    for (NSString *domainName in dict[@"domainNames"]) {
+    for (NSString *domainName in dict[agentRelationshipDomainNames]) {
         [domains addObject:[Domain fetchInMOC:agent.managedObjectContext withName:domainName]];
     }
     agent.domains = domains;

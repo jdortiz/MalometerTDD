@@ -19,6 +19,8 @@ extern NSString *const agentPropertyName;
 extern NSString *const agentPropertyDestructionPower;
 extern NSString *const agentPropertyMotivation;
 extern NSString *const agentPropertyAssessment;
+extern NSString *const agentRelationshipFreakTypeName;
+extern NSString *const agentRelationshipDomainNames;
 
 
 @interface Agent (Model)
