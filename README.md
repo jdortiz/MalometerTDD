@@ -31,11 +31,14 @@ improved for performance in production code. However:
 
 ## TDD Demo ##
 
+Learn how to write code the TDD way.
+
 ### Create project (5min)
 1. Create new project in Xcode. Use the "Empty application" (iOS) template.
 2. Call it "MalometerTDD" and use Core Data.
 3. Close the project window.
 4. Create a Podfile in the project directory.
+
     platform :ios, "7.0"
     
     target "MalometerTDD" do
@@ -45,13 +48,18 @@ improved for performance in production code. However:
     target "MalometerTDDTests" do
       pod 'OCMock'
     end
-5. Execute =pod install=
+
+5. Execute `pod install`
 6. Copy the Core Data Test template
+
     $ cd
     $ tar xjvf <path>/UnitTestTemplates.tar.bz2
+
 7. Open MalometerTDD.xcworkspace
 
 ### First test (test return) (10 min) ###
+
+Make an initial test, in order to understand the pieces and the mechanics.
 
 1. Create the Agent entity in the model and declare the name,
    destructionPower and motivation as they were defined before.
@@ -71,7 +79,12 @@ improved for performance in production code. However:
 
 ## TDD exercise ##
 
+Now you play to get code from the tests.
+
 ### Test the transient property (test state) (15 min) ###
+
+Core Data properties need no testing, but the assessment that is
+calculated, is somthing to be checked.
 
 1. Add the transient property to the model as you did before.
 2. Write the first test to check the assessment value given a
@@ -88,13 +101,17 @@ improved for performance in production code. However:
 ### Test KVO compliance (test behavior) (20 min) ###
 
 will/didAccessValueForKey is required for maintaining relationships
-and unfaulting.
+and unfaulting, so we must be sure that it works.
+
 1. Test behavior using OCMock.
 2. Understand the problems of mocking and Core Data.
 3. Replace properties with primitive values and voila!
 4. Refactor to include constants.
 
 ### Test assessment dependencies (20 min) ###
+
+Test that objects observing changes of assessment are notified when
+the other two properties change.
 
 1. Create a boolean iVar to flag changes and reset in the test setUp.
 2. Create a test that observes changes of assessment when motivation
@@ -108,10 +125,14 @@ and unfaulting.
 
 ### Complete agent functionality (30 min) ###
 
+Test other logic of the model.
+
 1. Add tests and code for the picture logic.
 2. Add tests and code for the fetch requests.
 
 ### Create the other entities and their tests (30 min) ###
+
+Extend the tests to the FreakType entity.
 
 1. Create the FreakType entity and the subclass.
 2. Run the test to confirm that everything is fine.
@@ -119,6 +140,10 @@ and unfaulting.
 4. Create a fixture for the fetches.
 
 ### Test validation (20 min) ###
+
+Validation is a key part of Core Data. Test that the data is validated
+only if follows our requirements and understand how to make this
+custom validations.
 
 1. Change the model to disallow empty agent names.
 2. Write the test to confirm that an empty agent name cannot be
@@ -134,6 +159,8 @@ and unfaulting.
 7. Create the error with the proper information to pass the test.
 
 ### Add a self served stack: UIManagedDocument (15 min) ###
+
+Undertand a different way to work with the Core Data Stack.
 
 1. Create the MalometerDocument class as subclass of UIManagedDocument.
 2. Create its corresponding test class.
@@ -152,7 +179,11 @@ and unfaulting.
 
 ## Import data ##
 
+Make our object able to work with data in a different format.
+
 ### Create a convenience constructor for importing (20 min) ###
+
+Use convenience constructors, that consume the data in the expected format.
 
 1. Create a convenience constuctor that takes the MOC and a
    dictionary as parameters.
@@ -160,6 +191,8 @@ and unfaulting.
    are preserved.
 
 ### Create convenience constructors for the other entities (20 min) ###
+
+Apply the same concepts to the other entities.
 
 1. Create a convenience constuctor for the FreakType that takes the
    MOC and a dictionary as parameters.
@@ -170,6 +203,9 @@ and unfaulting.
 
 ### Import relationships (20 min) ###
 
+Understand how the relationships can be recovered from the data and
+applied to our model.
+
 1. Modify the agent convenience constructor (with tests) so it is
    related with the (pre-existing) category that has the name provided
    in the dictionary with the "freakTypeName" key, as name.
@@ -178,6 +214,8 @@ and unfaulting.
    in the dictionary with the "domainNames" key, as name.
 
 ### General importer (30 min) ###
+
+Make the importer method that performs all the required steps.
 
 1. Create the importData as a document method that takes a dictionary.
 2. Create (and test) as many FreakTypes as indicated in the array
@@ -189,10 +227,12 @@ and unfaulting.
 
 ### Preload existing data (20 min) ###
 
-2. Create another lazy loaded property that returns the URL to the
+Understand how to provide seed data in our app.
+
+1. Create another lazy loaded property that returns the URL to the
    initial data. If it doesnt exist, it returns a path to a resource
    in the main bundle.
-1. Create a lazy loaded property for the document class for the file
+2. Create a lazy loaded property for the document class for the file
    manager. If it doesn't exist returns the defaultManager.
 3. Create a test to verify that if the storeURL passed to
    configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:
