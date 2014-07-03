@@ -145,9 +145,9 @@ Validation is a key part of Core Data. Test that the data is validated
 only if follows our requirements and understand how to make this
 custom validations.
 
-1. Change the model to disallow empty agent names.
-2. Write the test to confirm that an empty agent name cannot be
+1. Write the test to confirm that an empty agent name cannot be
    saved.
+2. Change the model to disallow empty agent names.
 3. Make another test to see that a name consisting only on spaces
    will not be accepted when saving.
 4. To add the validation include the validateName:error: to the Agent
